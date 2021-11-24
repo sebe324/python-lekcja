@@ -6,7 +6,7 @@ kolor_kartyID=[0,1,2,3]
 nazwa_karty=["2","3","4","5","6","7","8","9","10","Jopek","Królowa","Król","As"]
 nazwa_kartyID=[]
 for i in range(13):
-    nazwa_kartyID.append(i)
+    nazwa_kartyID.append(i+1)
 liczba_graczy=4
 liczba_kart=5
 gracze=[]
@@ -38,3 +38,20 @@ def compare_cards(c1,c2):
         elif(c1[1]<c2[1]):
             return False
 print(compare_cards(gracze[1][1], gracze[3][1]))
+def black_jack(cards):
+    value=0
+    for i in range(len(cards)):
+        #print(cards[i][0])
+        if(cards[i][0]==13): #jezeli karta to as
+            if(value>10): #jezeli wartosc kart jest wieksza niz 10, wartosc asa zmienia sie na 1
+                value+=1
+            elif(value<=10): #natomiast gdy wartosc kart jest mniejsza bądź równa 10, wartosc asa zmienia się na11
+                value+=11
+        else:
+            value+=cards[i][0]
+    #print(value)
+    if(value<=21): #sprawdza czy wartosc kart jest nie wieksza niz 21, jesli tak zwraca true, jak nie to false
+        return True
+    else:
+        return False
+print(black_jack([gracze[0][0], gracze[0][1], gracze[0][2]]))
